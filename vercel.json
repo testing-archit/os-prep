@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/os_viva_guide.html"
+    }
+  ]
+}
