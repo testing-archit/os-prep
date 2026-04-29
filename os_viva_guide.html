@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OS Viva Prep — Complete Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;400;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0c10;
+  --surface: #111318;
+  --surface2: #181b22;
+  --border: #1e2330;
+  --accent: #00e5ff;
+  --accent2: #7c3aed;
+  --accent3: #f59e0b;
+  --accent4: #10b981;
+  --accent5: #ef4444;
+  --text: #e2e8f0;
+  --muted: #64748b;
+  --code-bg: #0d1117;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+/* ── NAV ── */
+#nav {
+  position: fixed; top:0; left:0; width:260px; height:100vh;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  overflow-y: auto; z-index:100;
+  padding: 24px 0;
+}
+#nav h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--accent); padding: 0 20px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.nav-topic {
+  padding: 6px 20px;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--muted);
+  transition: all .2s;
+  display: flex; align-items: center; gap: 8px;
+}
+.nav-topic:hover, .nav-topic.active {
+  color: var(--accent); background: rgba(0,229,255,.05);
+  border-left: 2px solid var(--accent);
+}
+.nav-topic .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--accent2);
+  background: rgba(124,58,237,.1);
+  padding: 1px 5px; border-radius: 3px;
+}
+
+/* ── MAIN CONTENT ── */
+#main {
+  margin-left: 260px;
+  padding: 40px 50px;
+  max-width: 1100px;
+}
+
+/* ── HERO ── */
+.hero {
+  text-align: center;
+  padding: 60px 0 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 60px;
+}
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: 48px; font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1; margin-bottom: 12px;
+}
+.hero p { color: var(--muted); font-size: 16px; }
+.pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-top:20px; }
+.pill {
+  background: var(--surface2); border: 1px solid var(--border);
+  padding: 4px 12px; border-radius: 20px;
+  font-size: 11px; color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ── TOPIC SECTION ── */
+.topic {
+  margin-bottom: 80px;
+  padding-bottom: 80px;
+  border-bottom: 1px solid var(--border);
+}
+.topic-header {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 36px;
+}
+.topic-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 700;
+  color: var(--bg);
+  background: var(--accent);
+  padding: 4px 10px; border-radius: 4px;
+  white-space: nowrap;
+}
+.topic-num.t2 { background: var(--accent2); }
+.topic-num.t3 { background: var(--accent3); color: #000; }
+.topic-num.t4 { background: var(--accent4); color: #000; }
+.topic-num.t5 { background: var(--accent5); }
+.topic h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px; font-weight: 800;
+  color: var(--text);
+}
+
+/* ── SECTION LABELS ── */
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--accent2);
+  margin: 32px 0 12px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-label::after {
+  content:''; flex:1; height:1px; background: var(--border);
+}
+
+/* ── CORE CONCEPT BOX ── */
+.concept-box {
+  background: linear-gradient(135deg, rgba(0,229,255,.05), rgba(124,58,237,.05));
+  border: 1px solid rgba(0,229,255,.2);
+  border-radius: 8px; padding: 20px 24px;
+  margin-bottom: 24px;
+  font-size: 14px; line-height: 1.8;
+}
+
+/* ── CODE BLOCKS ── */
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 6px;
+  padding: 20px;
+  overflow-x: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #a9b1d6;
+  margin: 16px 0;
+  white-space: pre;
+}
+pre.t2 { border-left-color: var(--accent2); }
+pre.t3 { border-left-color: var(--accent3); }
+pre.t4 { border-left-color: var(--accent4); }
+pre.t5 { border-left-color: var(--accent5); }
+
+/* ── TABLES ── */
+.tbl-wrap { overflow-x: auto; margin: 16px 0; }
+table {
+  width: 100%; border-collapse: collapse;
+  font-size: 13px;
+}
+th {
+  background: var(--surface2);
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+  padding: 10px 14px; text-align: left;
+  border-bottom: 2px solid var(--border);
+}
+td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: top;
+}
+tr:hover td { background: var(--surface2); }
+td:first-child { font-weight: 600; color: var(--accent); font-family:'JetBrains Mono',monospace; font-size:12px; }
+
+/* ── Q&A CARDS ── */
+.qa-list { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+.qa-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px; overflow: hidden;
+}
+.qa-q {
+  background: var(--surface2);
+  padding: 12px 16px;
+  font-weight: 600; font-size: 13px;
+  cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  user-select: none;
+  transition: background .2s;
+}
+.qa-q:hover { background: #1e2330; }
+.qa-q::after { content: '▼'; font-size:10px; color:var(--muted); transition:.2s; }
+.qa-card.open .qa-q::after { transform: rotate(180deg); }
+.qa-a {
+  padding: 14px 16px;
+  font-size: 13px; line-height: 1.7;
+  color: #94a3b8;
+  display: none;
+  border-top: 1px solid var(--border);
+}
+.qa-card.open .qa-a { display: block; }
+
+/* ── TRAP QUESTIONS ── */
+.trap-card {
+  background: rgba(239,68,68,.05);
+  border: 1px solid rgba(239,68,68,.2);
+  border-radius: 8px; padding: 16px;
+  margin-bottom: 10px;
+}
+.trap-q { color: #fca5a5; font-weight:600; font-size:13px; margin-bottom:8px; }
+.trap-a { color: #94a3b8; font-size:13px; }
+
+/* ── MISTAKE CARDS ── */
+.mistake {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 8px; margin-bottom: 8px;
+}
+.wrong {
+  background: rgba(239,68,68,.07); border:1px solid rgba(239,68,68,.2);
+  border-radius:6px; padding:10px 14px; font-size:12px; color: #fca5a5;
+}
+.right {
+  background: rgba(16,185,129,.07); border:1px solid rgba(16,185,129,.2);
+  border-radius:6px; padding:10px 14px; font-size:12px; color: #6ee7b7;
+}
+.wrong::before { content:'✗ '; font-weight:700; }
+.right::before { content:'✓ '; font-weight:700; }
+
+/* ── REVISION BOX ── */
+.revision-box {
+  background: linear-gradient(135deg, rgba(124,58,237,.08), rgba(0,229,255,.08));
+  border: 1px solid rgba(124,58,237,.3);
+  border-radius: 8px; padding: 20px 24px;
+}
+.revision-box ul { list-style:none; display:flex; flex-direction:column; gap:6px; }
+.revision-box li {
+  font-size: 13px; color: var(--text);
+  padding-left: 20px; position:relative;
+}
+.revision-box li::before {
+  content:'→'; position:absolute; left:0;
+  color: var(--accent); font-weight:700;
+}
+
+/* ── ANALOGY BOX ── */
+.analogy-box {
+  background: rgba(245,158,11,.05);
+  border: 1px solid rgba(245,158,11,.2);
+  border-radius: 8px; padding: 18px 22px;
+  font-size: 13px; line-height: 1.8;
+}
+.analogy-box strong { color: var(--accent3); }
+
+/* ── ADVAN/DISADV ── */
+.ad-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:8px; }
+.adv { background:rgba(16,185,129,.06); border:1px solid rgba(16,185,129,.2); border-radius:6px; padding:14px; }
+.dis { background:rgba(239,68,68,.06); border:1px solid rgba(239,68,68,.2); border-radius:6px; padding:14px; }
+.adv h4 { color:var(--accent4); font-size:12px; margin-bottom:8px; text-transform:uppercase; letter-spacing:1px; }
+.dis h4 { color:var(--accent5); font-size:12px; margin-bottom:8px; text-transform:uppercase; letter-spacing:1px; }
+.adv li, .dis li { font-size:12px; color:#94a3b8; margin-left:14px; margin-bottom:4px; }
+
+/* ── FORMULA STRIP ── */
+.formula-strip {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px; padding: 14px 18px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; color: var(--accent3);
+  margin: 12px 0;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width:6px; height:6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius:3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+/* ── HIGHLIGHT ── */
+mark { background:rgba(0,229,255,.15); color:var(--accent); padding:1px 4px; border-radius:3px; }
+strong { color: #f1f5f9; }
+
+.tag {
+  display:inline-block; font-size:10px; font-family:'JetBrains Mono',monospace;
+  padding:2px 8px; border-radius:3px; margin:0 2px;
+}
+.tag.cyan { background:rgba(0,229,255,.1); color:var(--accent); border:1px solid rgba(0,229,255,.2); }
+.tag.purple { background:rgba(124,58,237,.1); color:#a78bfa; border:1px solid rgba(124,58,237,.2); }
+.tag.amber { background:rgba(245,158,11,.1); color:#fbbf24; border:1px solid rgba(245,158,11,.2); }
+.tag.green { background:rgba(16,185,129,.1); color:#34d399; border:1px solid rgba(16,185,129,.2); }
+.tag.red { background:rgba(239,68,68,.1); color:#f87171; border:1px solid rgba(239,68,68,.2); }
+
+p { margin-bottom: 10px; }
+
+@media(max-width:768px){
+  #nav{display:none}
+  #main{margin-left:0;padding:20px}
+  .mistake{grid-template-columns:1fr}
+  .ad-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR NAV -->
+<nav id="nav">
+  <h2>OS Viva Guide</h2>
+  <div class="nav-topic active" onclick="scrollTo('t1')"><span class="num">01</span> Process, Thread & PCB</div>
+  <div class="nav-topic" onclick="scrollTo('t2')"><span class="num">02</span> CPU Scheduling</div>
+  <div class="nav-topic" onclick="scrollTo('t3')"><span class="num">03</span> Synchronization & CS</div>
+  <div class="nav-topic" onclick="scrollTo('t4')"><span class="num">04</span> Deadlocks</div>
+  <div class="nav-topic" onclick="scrollTo('t5')"><span class="num">05</span> Memory Management</div>
+  <div class="nav-topic" onclick="scrollTo('ref')"><span class="num">★</span> Quick Reference</div>
+</nav>
+
+<!-- MAIN -->
+<main id="main">
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Operating Systems<br>Viva Preparation</h1>
+  <p>Complete technical guide — concepts, diagrams, numericals, trap questions</p>
+  <div class="pills">
+    <span class="pill">Process & Thread</span>
+    <span class="pill">CPU Scheduling</span>
+    <span class="pill">Synchronization</span>
+    <span class="pill">Deadlocks</span>
+    <span class="pill">Memory Management</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- TOPIC 1: PROCESS vs THREAD, PCB               -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="topic" id="t1">
+  <div class="topic-header">
+    <span class="topic-num">TOPIC 01</span>
+    <h2>Process vs Thread, PCB & Context Switching</h2>
+  </div>
+
+  <div class="section-label">Core Concept</div>
+  <div class="concept-box">
+    A <strong>process</strong> is a program in execution — an active entity with its own memory space, resources, PCB, and state. A <strong>thread</strong> is the smallest unit of CPU execution <em>within</em> a process. Multiple threads share the same process address space but execute independently.<br><br>
+    <strong>Context Switching</strong> is the mechanism by which the OS saves the state of a running process/thread and loads the state of the next — it is <mark>pure overhead</mark>; no useful work is done during the switch itself.
+  </div>
+
+  <div class="section-label">Key Terms</div>
+  <div class="tbl-wrap"><table>
+    <tr><th>Term</th><th>Definition</th></tr>
+    <tr><td>Process</td><td>Program in execution; has its own PCB, memory, file descriptors, OS resources</td></tr>
+    <tr><td>Thread</td><td>Lightweight unit of execution within a process; shares heap, code, data</td></tr>
+    <tr><td>PCB</td><td>Process Control Block — kernel data structure storing all process metadata</td></tr>
+    <tr><td>Context Switch</td><td>Saving CPU state of current process + loading CPU state of next process</td></tr>
+    <tr><td>Dispatcher</td><td>Module that gives CPU control to the process selected by the scheduler</td></tr>
+    <tr><td>Dispatch Latency</td><td>Time taken to stop one process and start another</td></tr>
+    <tr><td>User Thread</td><td>Managed by user-level library (e.g., POSIX pthreads)</td></tr>
+    <tr><td>Kernel Thread</td><td>Managed directly by the OS kernel</td></tr>
+  </table></div>
+
+  <div class="section-label">Diagrams</div>
+  <pre>
+╔═══════════════════════════════════════╗
+║       PROCESS CONTROL BLOCK (PCB)     ║
+╠═══════════════════════════════════════╣
+║  Process ID (PID)                     ║  ← Unique identifier
+║  Process State                        ║  ← New/Ready/Running/Waiting/Terminated
+║  Program Counter (PC)                 ║  ← Address of NEXT instruction
+║  CPU Registers (AX, BX, SP, flags)    ║  ← Full register set
+║  CPU Scheduling Info (priority)       ║
+║  Memory Management Info               ║  ← Page tables, base/limit
+║  Accounting Info                      ║  ← CPU time used, limits
+║  I/O Status Info                      ║  ← Open files, allocated devices
+║  Parent PID (PPID) + Child PIDs       ║
+╚═══════════════════════════════════════╝
+  ↑ Stored in KERNEL MEMORY (process table), NOT process's own memory</pre>
+
+  <pre>
+PROCESS STATES & TRANSITIONS
+─────────────────────────────────────────────────────
+
+         admit
+  NEW ──────────────────────► READY
+                                │  ▲
+              scheduler         │  │  interrupt /
+              dispatch          │  │  I/O completion
+                                ▼  │
+                            RUNNING ───────────► TERMINATED
+                                │                  (exit)
+                                │  I/O or event wait
+                                ▼
+                            WAITING / BLOCKED</pre>
+
+  <pre>
+CONTEXT SWITCH — Step-by-Step
+─────────────────────────────────────────────────
+
+  P1 Running
+     │
+     │  (Timer interrupt / I/O request / yield)
+     ▼
+  ┌──────────────────────────────────────────────────┐
+  │  1. CPU detects interrupt                        │
+  │  2. Hardware saves minimal state (PC, PSW)       │
+  │  3. OS kernel takes control                      │
+  │  4. Save FULL CPU state of P1 → P1's PCB         │
+  │     (registers, PC, stack pointer, flags)        │
+  │  5. Update P1's state: Running → Ready           │
+  │  6. Scheduler selects next process (P2)          │
+  │  7. Load P2's CPU state from P2's PCB            │
+  │  8. Update P2's state: Ready → Running           │
+  │  9. Jump to P2's saved PC                        │
+  └──────────────────────────────────────────────────┘
+     │
+     ▼
+  P2 Running
+
+  ⚠  ZERO useful work during switch — pure OS overhead</pre>
+
+  <pre>
+MULTI-THREADED PROCESS STRUCTURE
+──────────────────────────────────────────────────────
+Process P
+┌───────────────────────────────────────────────────┐
+│  Code Segment (shared)                            │
+│  Data Segment (shared)                            │
+│  Heap         (shared)                            │
+│  ┌──────────┐   ┌──────────┐   ┌──────────┐      │
+│  │ Thread 1 │   │ Thread 2 │   │ Thread 3 │      │
+│  │  Stack   │   │  Stack   │   │  Stack   │      │
+│  │  PC      │   │  PC      │   │  PC      │      │
+│  │  Regs    │   │  Regs    │   │  Regs    │      │
+│  └──────────┘   └──────────┘   └──────────┘      │
+└───────────────────────────────────────────────────┘
+Own (per-thread): Stack, PC, Register set, Thread ID
+Shared:          Code, Heap, Data, Open files, Signals</pre>
+
+  <div class="section-label">Real-World Analogy</div>
+  <div class="analogy-box">
+    <strong>Process = A Restaurant.</strong> The restaurant has its own kitchen (memory), staff (resources), and menu (code).<br><br>
+    <strong>Thread = A Chef in the restaurant.</strong> Multiple chefs share the same kitchen (heap/data), but each works on their own dish (stack/PC).<br><br>
+    <strong>Context Switch = Shift Change.</strong> When a chef leaves, they note exactly what stage the dish is at (save state to PCB), and the next chef reads those notes and continues (loads state from PCB).
+  </div>
+
+  <div class="section-label">Comparison Tables</div>
+  <div class="tbl-wrap"><table>
+    <tr><th>Feature</th><th>Process</th><th>Thread</th></tr>
+    <tr><td>Memory</td><td>Separate address space</td><td>Shared address space</td></tr>
+    <tr><td>Creation time</td><td>Slow (fork + memory alloc)</td><td>Fast (within same process)</td></tr>
+    <tr><td>Communication</td><td>IPC (pipes, sockets, shared mem)</td><td>Direct (shared variables)</td></tr>
+    <tr><td>Context switch cost</td><td>High (TLB flush needed)</td><td>Low (no address space change)</td></tr>
+    <tr><td>Crash impact</td><td>Only that process crashes</td><td>Can crash entire process</td></tr>
+    <tr><td>Synchronization</td><td>Less needed</td><td>More needed (race conditions)</td></tr>
+    <tr><td>Resource usage</td><td>High</td><td>Low</td></tr>
+    <tr><td>OS Example</td><td>Chrome tabs (each = process)</td><td>Chrome: rendering + JS in one tab</td></tr>
+  </table></div>
+
+  <div class="tbl-wrap" style="margin-top:12px"><table>
+    <tr><th>Feature</th><th>User Thread</th><th>Kernel Thread</th></tr>
+    <tr><td>Managed by</td><td>User-level library</td><td>OS kernel</td></tr>
+    <tr><td>Context switch</td><td>Fast (no kernel involvement)</td><td>Slower (kernel involved)</td></tr>
+    <tr><td>Blocking behavior</td><td>One blocks → ALL threads block</td><td>Only that thread blocks</td></tr>
+    <tr><td>Multicore support</td><td>No (kernel sees 1 process)</td><td>Yes</td></tr>
+    <tr><td>Example</td><td>POSIX green threads</td><td>Java threads, Linux pthreads</td></tr>
+  </table></div>
+
+  <div class="section-label">Advantages & Disadvantages</div>
+  <div class="ad-grid">
+    <div class="adv"><h4>✓ Threads — Advantages</h4><ul>
+      <li>Low creation overhead</li>
+      <li>Fast inter-thread communication</li>
+      <li>Better CPU utilization (parallel tasks)</li>
+      <li>Responsive UI (UI thread + background thread)</li>
+    </ul></div>
+    <div class="dis"><h4>✗ Threads — Disadvantages</h4><ul>
+      <li>Harder to program (race conditions)</li>
+      <li>One thread crash = process crash</li>
+      <li>Debugging is complex</li>
+      <li>Synchronization overhead</li>
+    </ul></div>
+  </div>
+
+  <div class="section-label">Viva Q&amp;A</div>
+  <div class="qa-list">
+    <div class="qa-card"><div class="qa-q">Q: What is a process?</div><div class="qa-a">A process is a program in execution. It includes the program code, current activity (PC), stack, data section, and heap. Each process has its own PCB stored in kernel memory.</div></div>
+    <div class="qa-card"><div class="qa-q">Q: What does the PCB contain?</div><div class="qa-a">PID, process state, program counter, CPU registers, memory management info (page tables), I/O status info, accounting info, scheduling info, PPID, and list of child PIDs.</div></div>
+    <div class="qa-card"><div class="qa-q">Q: What is saved during a context switch?</div><div class="qa-a">The complete CPU state: program counter, ALL CPU registers (general-purpose + status flags), stack pointer, and memory management registers. Saved into the process's PCB by the OS kernel (dispatcher).</div></div>
+    <div class="qa-card"><div class="qa-q">Q: Why are threads called lightweight processes?</div><div class="qa-a">Threads share the process's address space (code, heap, data, files). Only thread-specific data (PC, registers, stack) is separate. Creation, switching, and communication are all faster than full processes.</div></div>
+    <div class="qa-card"><div class="qa-q">Q: Can two threads of the same process run truly in parallel?</div><div class="qa-a">Yes — on a multi-core CPU, two threads of the same process can run on separate cores simultaneously, achieving true parallelism.</div></div>
+    <div class="qa-card"><div class="qa-q">Q: What is the difference between concurrency and parallelism?</div><div class="qa-a">Concurrency = multiple tasks making progress via time-sharing (single core possible). Parallelism = multiple tasks literally executing simultaneously (requires multi-core).</div></div>
+    <div class="qa-card"><div class="qa-q">Q: Who does the saving in context switch — hardware or software?</div><div class="qa-a">Both. Hardware saves minimal state (PC, PSW) on interrupt. Software (OS kernel dispatcher) saves the full register state to the PCB.</div></div>
+  </div>
+
+  <div class="section-label">Trap Questions ⚠</div>
+  <div class="trap-card">
+    <div class="trap-q">Q: Is a process with one thread the same as a thread?</div>
+    <div class="trap-a">No. A process always has a PCB, memory space, and OS resources. A thread has only its execution context. Even a single-threaded process carries process-level overhead that a raw thread doesn't.</div>
+  </div>
+  <div class="trap-card">
+    <div class="trap-q">Q: If threads share memory, why does each thread have its own stack?</div>
+    <div class="trap-a">Each thread has its own execution flow with its own function calls, local variables, and return addresses — all of which are stack-based. These must be independent; otherwise one thread's function call would corrupt another's.</div>
+  </div>
+  <div class="trap-card">
+    <div class="trap-q">Q: Is context switching done by the scheduler?</div>
+    <div class="trap-a">No! The scheduler SELECTS the next process (policy decision). The DISPATCHER performs the actual context switch (mechanism). Dispatch latency is the time the dispatcher takes to complete the switch.</div>
+  </div>
+
+  <div class="section-label">Common Mistakes</div>
+  <div class="mistake"><div class="wrong">"PCB is stored in process's own memory"</div><div class="right">PCB is stored in KERNEL memory (process table)</div></div>
+  <div class="mistake"><div class="wrong">"Context switch saves only the PC"</div><div class="right">It saves the ENTIRE CPU state — all registers, flags, SP</div></div>
+  <div class="mistake"><div class="wrong">"All threads have separate heaps"</div><div class="right">Threads share the heap; only the STACK is separate</div></div>
+  <div class="mistake"><div class="wrong">"Context switch is done by the scheduler"</div><div class="right">Scheduler SELECTS; DISPATCHER does the actual switch</div></div>
+
+  <div class="section-label">1-Minute Revision</div>
+  <div class="revision-box"><ul>
+    <li>Process = program in execution; has PCB, own memory, OS resources</li>
+    <li>Thread = unit of execution within process; shares code/heap/data</li>
+    <li>PCB stores: PID, state, PC, registers, memory info, I/O info (in KERNEL memory)</li>
+    <li>5 Process States: New → Ready → Running → Waiting → Terminated</li>
+    <li>Context Switch: save CPU state to PCB → load next PCB → resume (pure overhead)</li>
+    <li>Done by DISPATCHER, not scheduler; scheduler only selects</li>
+    <li>Thread own: Stack, PC, Registers | Thread share: Code, Heap, Data, Files</li>
+    <li>User thread: fast switch, one blocks all | Kernel thread: true multicore</li>
+  </ul></div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- TOPIC 2: CPU SCHEDULING                        -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="topic" id="t2">
+  <div class="topic-header">
+    <span class="topic-num t2">TOPIC 02</span>
+    <h2>CPU Scheduling Algorithms</h2>
+  </div>
+
+  <div class="section-label">Core Concept</div>
+  <div class="concept-box">
+    CPU scheduling decides <strong>which ready process gets the CPU next and for how long</strong>. The <strong>scheduler</strong> selects from the ready queue; the <strong>dispatcher</strong> performs the context switch. Goal: maximize CPU utilization and throughput while minimizing turnaround time, waiting time, and response time.
+  </div>
+
+  <div class="section-label">Key Terms</div>
+  <div class="tbl-wrap"><table>
+    <tr><th>Term</th><th>Definition</th></tr>
+    <tr><td>CPU Burst</td><td>Period of CPU execution between I/O requests</td></tr>
+    <tr><td>Arrival Time (AT)</td><td>When process enters the ready queue</td></tr>
+    <tr><td>Burst Time (BT)</td><td>Total CPU time the process needs</td></tr>
+    <tr><td>Completion Time (CT)</td><td>When the process finishes execution</td></tr>
+    <tr><td>Turnaround Time (TAT)</td><td>CT − AT (total time spent in system)</td></tr>
+    <tr><td>Waiting Time (WT)</td><td>TAT − BT (time spent waiting in ready queue)</td></tr>
+    <tr><td>Response Time</td><td>Time from submission to FIRST CPU response</td></tr>
+    <tr><td>Preemptive</td><td>OS can forcibly take CPU from running process</td></tr>
+    <tr><td>Non-preemptive</td><td>Process runs until it voluntarily gives up CPU</td></tr>
+    <tr><td>Starvation</td><td>Process never gets CPU due to continuous preemption by higher-priority processes</td></tr>
+    <tr><td>Aging</td><td>Gradually increasing priority of waiting processes to prevent starvation</td></tr>
+    <tr><td>Convoy Effect</td><td>Short processes queue behind a long process in FCFS</td></tr>
+  </table></div>
+
+  <div class="formula-strip">
+    TAT = CT − AT &nbsp;&nbsp;|&nbsp;&nbsp; WT = TAT − BT &nbsp;&nbsp;|&nbsp;&nbsp; Response Time = First_CPU_time − AT
+  </div>
+
+  <div class="section-label">Algorithm Breakdown</div>
+  <pre class="t2">
+ALGORITHMS OVERVIEW
+────────────────────────────────────────────────────────────────
+
+1. FCFS (First Come First Served)
+   • Non-preemptive; FIFO queue
+   • Problem: CONVOY EFFECT — short processes wait behind long ones
+   • No starvation
+
+2. SJF (Shortest Job First) — Non-preemptive
+   • Selects process with shortest BURST TIME
+   • Optimal for minimizing average waiting time
+   • Problem: Cannot know burst time in advance (estimated via exponential averaging)
+
+3. SRTF (Shortest Remaining Time First) — Preemptive SJF
+   • New process preempts current if its BT < current's remaining BT
+   • Minimizes average waiting time among all algorithms
+
+4. Round Robin (RR)
+   • Each process gets a fixed TIME QUANTUM (q)
+   • After quantum: process goes to back of ready queue
+   • Best for time-sharing; prevents starvation
+   • Large q → degenerates to FCFS | Small q → excessive context switches
+
+5. Priority Scheduling
+   • Lower number = higher priority (usually)
+   • Preemptive or non-preemptive
+   • Problem: STARVATION | Solution: AGING (increase priority over time)
+
+6. MLFQ (Multilevel Feedback Queue)
+   • Processes CAN move between queues
+   • I/O-bound → promoted | CPU-bound → demoted
+   • Used in real OS (Linux, Windows) — most flexible</pre>
+
+  <div class="section-label">Diagrams</div>
+  <pre class="t2">
+MLFQ STRUCTURE
+──────────────────────────────────────────────
+Priority 1 (Highest) → [Q1: RR, q=8ms ] → CPU
+         │                    │ (if not done in q)
+         │                    ▼
+Priority 2           → [Q2: RR, q=16ms] → CPU
+         │                    │ (if not done in q)
+         │                    ▼
+Priority 3 (Lowest)  → [Q3: FCFS      ] → CPU
+
+New process enters Q1. If it doesn't finish in q,
+it drops to Q2, then Q3 → rewards I/O-bound, 
+demotes CPU-hungry processes automatically.</pre>
+
+  <div class="section-label">Numerical Example</div>
+  <pre class="t2">
+GIVEN:
+┌─────────┬──────────────┬────────────┐
+│ Process │ Arrival Time │ Burst Time │
+├─────────┼──────────────┼────────────┤
+│   P1    │      0       │     5      │
+│   P2    │      1       │     3      │
+│   P3    │      2       │     8      │
+│   P4    │      3       │     6      │
+└─────────┴──────────────┴────────────┘
+
+─── FCFS ───────────────────────────────────────────
+Gantt: |─P1(0-5)─|─P2(5-8)─|─P3(8-16)─|─P4(16-22)─|
+
+P1: CT=5,  TAT=5-0=5,  WT=5-5=0
+P2: CT=8,  TAT=8-1=7,  WT=7-3=4
+P3: CT=16, TAT=16-2=14, WT=14-8=6
+P4: CT=22, TAT=22-3=19, WT=19-6=13
+
+Avg TAT = (5+7+14+19)/4 = 11.25
+Avg WT  = (0+4+6+13)/4  = 5.75
+
+─── SJF (Non-preemptive) ────────────────────────────
+t=0: only P1 → run P1
+t=5: P2(BT=3), P3(BT=8), P4(BT=6) → pick P2 (shortest)
+t=8: P3(BT=8), P4(BT=6) → pick P4
+t=14: P3 runs
+
+Gantt: |─P1(0-5)─|─P2(5-8)─|─P4(8-14)─|─P3(14-22)─|
+
+P1: TAT=5,  WT=0
+P2: TAT=7,  WT=4
+P4: TAT=11, WT=5
+P3: TAT=20, WT=12
+
+Avg WT = (0+4+5+12)/4 = 5.25  ← Better than FCFS ✓
+
+─── Round Robin (q=2) — Trace ───────────────────────
+t=0:  P1 runs (rem=3)
+t=2:  Queue=[P2,P3,P1]; P2 runs (rem=1)
+t=4:  Queue=[P3,P1,P4,P2]; P3 runs (rem=6)
+t=6:  P1 runs (rem=1)
+t=8:  P4 runs (rem=4)
+t=10: P2 runs 1ms → DONE at t=11 ✓
+t=11: P3 runs (rem=4)
+t=13: P1 runs 1ms → DONE at t=14 ✓
+...continues until all done</pre>
+
+  <div class="section-label">Comparison Table</div>
+  <div class="tbl-wrap"><table>
+    <tr><th>Algorithm</th><th>Preemptive</th><th>Starvation</th><th>Convoy Effect</th><th>Best For</th></tr>
+    <tr><td>FCFS</td><td>No</td><td>No</td><td>Yes ⚠</td><td>Simple batch systems</td></tr>
+    <tr><td>SJF</td><td>No</td><td>Yes (long jobs)</td><td>No</td><td>Batch, known burst times</td></tr>
+    <tr><td>SRTF</td><td>Yes</td><td>Yes</td><td>No</td><td>Minimizing avg wait</td></tr>
+    <tr><td>Round Robin</td><td>Yes</td><td>No</td><td>No</td><td>Time-sharing systems</td></tr>
+    <tr><td>Priority</td><td>Both</td><td>Yes (low priority) ⚠</td><td>No</td><td>Real-time systems</td></tr>
+    <tr><td>MLFQ</td><td>Yes</td><td>No (with aging)</td><td>No</td><td>General-purpose OS</td></tr>
+  </table></div>
+
+  <div class="section-label">Real-World Analogy</div>
+  <div class="analogy-box">
+    <strong>FCFS = Bank queue</strong> — whoever arrives first gets served first, regardless of transaction complexity.<br><br>
+    <strong>SJF = Express checkout lane</strong> — person with fewest items goes first. Fastest overall, but unfair to large shoppers.<br><br>
+    <strong>Round Robin = Rotating presidency</strong> — each country gets to speak for exactly 2 minutes at the UN, then the next. Fair, but overhead in switching.<br><br>
+    <strong>Priority = Hospital ER triage</strong> — critical patients first. Risk: minor cases wait forever (starvation).<br><br>
+    <strong>Aging = Emergency escalation</strong> — if you've been waiting in the ER for 6 hours, your priority automatically increases.
+  </div>
+
+  <div class="section-label">Viva Q&amp;A</div>
+  <div class="qa-list">
+    <div class="qa-card"><div class="qa-q">Q: Which algorithm gives minimum average waiting time?</div><div class="qa-a">SJF (non-preemptive) and SRTF (preemptive) are provably optimal for minimizing average waiting time among all scheduling algorithms.</div></div>
+    <div class="qa-card"><div class="qa-q">Q: What is the Convoy Effect?</div><div class="qa-a">In FCFS, one long CPU-bound process holds the CPU while short processes and I/O-bound processes queue behind it — like a slow truck blocking fast cars. Results in high average waiting time.</div></div>
+    <div class="qa-card"><div class="qa-q">Q: What happens if time quantum in RR is very large/very small?</div><div class="qa-a">Very large → degenerates to FCFS (process completes before quantum). Very small → excessive context switches; CPU wastes all time switching and no useful work is done.</div></div>
+    <div class="qa-card"><div class="qa-q">Q: How does MLFQ prevent starvation?</div><div class="qa-a">By implementing AGING — a process waiting too long at a lower-priority queue is moved up to a higher-priority queue over time, ensuring it eventually gets CPU time.</div></div>
+    <div class="qa-card"><div class="qa-q">Q: Why can't SJF be implemented exactly in practice?</div><div class="qa-a">Because burst time is unknown in advance. OS estimates it using exponential averaging: τ(n+1) = α × t(n) + (1−α) × τ(n), where t(n) is actual burst and τ(n) is predicted burst.</div></div>
+    <div class="qa-card"><div class="qa-q">Q: Difference between scheduler and dispatcher?</div><div class="qa-a">Scheduler selects which process runs next (policy). Dispatcher actually performs the context switch and hands CPU control (mechanism). Dispatch latency = time for dispatcher to complete the switch.</div></div>
+  </div>
+
+  <div class="section-label">Trap Questions ⚠</div>
+  <div class="trap-card">
+    <div class="trap-q">Q: Does FCFS cause starvation?</div>
+    <div class="trap-a">NO. FCFS does NOT cause starvation — every process eventually gets the CPU. It causes the Convoy Effect, but that's poor performance, not starvation. Starvation is associated with Priority Scheduling and SJF.</div>
+  </div>
+  <div class="trap-card">
+    <div class="trap-q">Q: Is SJF always optimal?</div>
+    <div class="trap-a">Only optimal for average WAITING TIME, not necessarily turnaround time or response time. Also, it can starve long processes.</div>
+  </div>
+  <div class="trap-card">
+    <div class="trap-q">Q: In SRTF, can a newly arrived process preempt the running one?</div>
+    <div class="trap-a">Yes — if the newly arrived process has remaining burst time LESS than the current process's remaining time, it immediately preempts the current process.</div>
+  </div>
+
+  <div class="section-label">Common Mistakes</div>
+  <div class="mistake"><div class="wrong">"FCFS can cause starvation"</div><div class="right">FCFS causes Convoy Effect; it does NOT cause starvation</div></div>
+  <div class="mistake"><div class="wrong">TAT = CT (forgetting to subtract AT)</div><div class="right">TAT = CT − AT always; WT = TAT − BT</div></div>
+  <div class="mistake"><div class="wrong">"Larger quantum = better RR"</div><div class="right">Larger quantum → better throughput but WORSE response time</div></div>
+  <div class="mistake"><div class="wrong">"SJF gives optimal results always"</div><div class="right">Optimal only for average WAITING TIME, not overall</div></div>
+
+  <div class="section-label">1-Minute Revision</div>
+  <div class="revision-box"><ul>
+    <li>TAT = CT−AT | WT = TAT−BT | Response = First_CPU − AT</li>
+    <li>FCFS: simple, no starvation, Convoy Effect</li>
+    <li>SJF: optimal avg WT, non-preemptive, needs burst time knowledge</li>
+    <li>SRTF: preemptive SJF, best avg wait, high preemption overhead</li>
+    <li>Round Robin: fair, time quantum, prevents starvation</li>
+    <li>Priority: starvation risk → fix with AGING</li>
+    <li>MLFQ: best practical algorithm, used in real OS (Linux/Windows)</li>
+    <li>Convoy Effect = FCFS problem | Starvation = Priority/SJF problem</li>
+  </ul></div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- TOPIC 3: SYNCHRONIZATION                       -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="topic" id="t3">
+  <div class="topic-header">
+    <span class="topic-num t3">TOPIC 03</span>
+    <h2>Process Synchronization &amp; Critical Section</h2>
+  </div>
+
+  <div class="section-label">Core Concept</div>
+  <div class="concept-box">
+    When multiple processes/threads access <strong>shared data concurrently</strong>, results can be incorrect due to <strong>race conditions</strong>. The Critical Section Problem requires designing protocols so that <mark>only one process executes in its critical section at a time</mark>, ensuring data consistency. Three requirements must ALL be satisfied: Mutual Exclusion, Progress, and Bounded Waiting.
+  </div>
+
+  <div class="section-label">Key Terms</div>
+  <div class="tbl-wrap"><table>
+    <tr><th>Term</th><th>Definition</th></tr>
+    <tr><td>Race Condition</td><td>Outcome depends on the order/timing of concurrent process execution</td></tr>
+    <tr><td>Critical Section (CS)</td><td>Code segment that accesses shared resources</td></tr>
+    <tr><td>Mutual Exclusion</td><td>Only one process can be in CS at a time</td></tr>
+    <tr><td>Progress</td><td>If no process is in CS, a process wanting to enter must eventually be allowed</td></tr>
+    <tr><td>Bounded Waiting</td><td>Limit on how many times others can enter CS before a waiting process gets in</td></tr>
+    <tr><td>Mutex</td><td>Binary mutual exclusion lock with ownership semantics</td></tr>
+    <tr><td>Semaphore</td><td>Integer variable; accessed only via atomic wait()/signal() operations</td></tr>
+    <tr><td>Monitor</td><td>High-level construct with automatic mutual exclusion + condition variables</td></tr>
+    <tr><td>Busy Waiting / Spinlock</td><td>Process repeatedly checks condition without sleeping (wastes CPU)</td></tr>
+    <tr><td>Deadlock</td><td>Circular wait — all processes blocked forever</td></tr>
+    <tr><td>Livelock</td><td>Processes change state but make no progress</td></tr>
+  </table></div>
+
+  <div class="section-label">Diagrams</div>
+  <pre class="t3">
+CRITICAL SECTION REQUIREMENTS
+──────────────────────────────────────────────────────────
+ 1. MUTUAL EXCLUSION
+    If Pi is in CS, NO other process can be in CS
+
+ 2. PROGRESS
+    If no process is in CS and some want to enter,
+    only processes NOT in remainder section decide,
+    and the decision cannot be postponed indefinitely
+
+ 3. BOUNDED WAITING
+    There is a FINITE BOUND on how many times others
+    can enter CS after a process has requested entry
+
+CRITICAL SECTION TEMPLATE:
+────────────────────────────
+  do {
+    [ ENTRY SECTION ]      ← request permission
+    [ CRITICAL SECTION ]   ← access shared resource
+    [ EXIT SECTION ]       ← signal CS is free
+    [ REMAINDER SECTION ]  ← non-critical code
+  } while (true);</pre>
+
+  <pre class="t3">
+RACE CONDITION — Example
+──────────────────────────────────────────────────────────
+Shared: count = 5
+
+Process P1               Process P2
+────────────────         ────────────────
+reg1 = count (=5)        reg2 = count (=5)
+reg1 = reg1 + 1          reg2 = reg2 + 1
+reg1 = 6                 reg2 = 6
+count = reg1 (=6)        count = reg2 (=6)
+
+Expected: count = 7
+Actual:   count = 6  ← RACE CONDITION! Lost update!</pre>
+
+  <pre class="t3">
+PETERSON'S SOLUTION (2 processes, software)
+──────────────────────────────────────────────────────────
+Shared: int turn; bool flag[2];
+
+Process Pi:
+  flag[i] = true;          // I want to enter
+  turn = j;                // but give priority to Pj
+  while (flag[j] && turn == j)
+      ;                    // busy wait
+  — CRITICAL SECTION —
+  flag[i] = false;         // I'm done
+
+✅ Satisfies all 3 conditions
+❌ Busy waiting (wastes CPU)
+❌ May not work on modern CPUs without memory barriers</pre>
+
+  <pre class="t3">
+SEMAPHORE — Operations
+──────────────────────────────────────────────────────────
+Semaphore S = integer variable
+
+wait(S):              signal(S):
+  while (S <= 0)        S++;
+    ;  // busy wait
+  S--;
+
+Binary Semaphore (Mutex): S ∈ {0, 1}
+Counting Semaphore:       S ∈ [0, N]
+
+MUTEX USAGE:
+  semaphore mutex = 1;
+  wait(mutex);    // acquire lock
+  — CRITICAL SECTION —
+  signal(mutex);  // release lock
+
+PRODUCER-CONSUMER (Bounded Buffer):
+  semaphore mutex=1, empty=N, full=0;
+
+  Producer:                Consumer:
+    wait(empty);             wait(full);
+    wait(mutex);             wait(mutex);
+    // add item               // remove item
+    signal(mutex);           signal(mutex);
+    signal(full);            signal(empty);
+
+  ⚠ ORDER MATTERS: always wait(empty/full) BEFORE wait(mutex)
+     Reversing causes DEADLOCK!</pre>
+
+  <pre class="t3">
+DINING PHILOSOPHERS — The Classic Deadlock Problem
+──────────────────────────────────────────────────────────
+       P0
+    f4    f0
+  P4        P1
+    f3    f1
+       P3
+    f2
+       P2  (5 philosophers, 5 forks)
+
+Naive: each picks left fork → ALL wait for right fork → DEADLOCK!
+
+Solutions:
+  1. Allow max 4 philosophers to try eating simultaneously
+  2. Asymmetric: some pick left first, some pick right first
+  3. Pick BOTH forks atomically (with mutex)</pre>
+
+  <div class="section-label">Semaphore Trace — Numerical</div>
+  <pre class="t3">
+Binary semaphore S=1; P1 and P2 compete for CS
+
+Time  P1 action              P2 action         S
+──── ──────────────────────  ──────────────    ─
+1    wait(S) → S=0           —                 0
+2    IN CRITICAL SECTION      wait(S)→blocked   0
+3    signal(S) → S=1          —                 1
+4    —                        wait(S) → S=0     0
+5    —                        IN CRITICAL SEC   0
+6    —                        signal(S) → S=1   1
+
+✅ Mutual exclusion maintained: P2 blocked while P1 was in CS</pre>
+
+  <div class="section-label">Real-World Analogy</div>
+  <div class="analogy-box">
+    <strong>Critical Section = Single-occupancy bathroom</strong><br>
+    Only one person at a time (mutual exclusion). If free and you're waiting, you should get in (progress). You can't wait forever if others keep jumping ahead (bounded waiting).<br><br>
+    <strong>Semaphore = Parking lot with N spaces</strong><br>
+    wait() = take a slot (decrement). signal() = leave a slot (increment). If full (count=0), wait outside.<br><br>
+    <strong>Monitor = Bank manager's office</strong><br>
+    Only one customer inside (automatic mutual exclusion). You wait on a chair (condition variable wait). Manager calls you in (condition variable signal).
+  </div>
+
+  <div class="section-label">Comparison Table</div>
+  <div class="tbl-wrap"><table>
+    <tr><th>Mechanism</th><th>Level</th><th>Mutual Excl.</th><th>Busy Wait?</th><th>Notes</th></tr>
+    <tr><td>Peterson's</td><td>Software</td><td>Yes</td><td>Yes</td><td>Educational only; unsafe on modern CPUs</td></tr>
+    <tr><td>Mutex Lock</td><td>Hardware</td><td>Yes</td><td>Often</td><td>Ownership semantics; only locker can unlock</td></tr>
+    <tr><td>Binary Semaphore</td><td>OS</td><td>Yes</td><td>No (blocks)</td><td>Any process can signal</td></tr>
+    <tr><td>Counting Semaphore</td><td>OS</td><td>Per resource</td><td>No (blocks)</td><td>Manages N resource instances</td></tr>
+    <tr><td>Monitor</td><td>Language</td><td>Yes (built-in)</td><td>No</td><td>Java synchronized, condition variables</td></tr>
+    <tr><td>Spinlock</td><td>Hardware</td><td>Yes</td><td>Yes</td><td>Use only for very short waits on multicore</td></tr>
+  </table></div>
+
+  <div class="section-label">Viva Q&amp;A</div>
+  <div class="qa-list">
+    <div class="qa-card"><div class="qa-q">Q: What is a race condition?</div><div class="qa-a">When the outcome of a program depends on the relative timing of concurrent processes. The processes "race" to access shared data, and the result varies unpredictably based on scheduling order.</div></div>
+    <div class="qa-card"><div class="qa-q">Q: Difference between binary semaphore and mutex?</div><div class="qa-a">Binary semaphore: ANY process can call signal() on it, even one that didn't call wait(). Mutex: only the process/thread that LOCKED it can unlock it (ownership semantics). Mutex is stricter.</div></div>
+    <div class="qa-card"><div class="qa-q">Q: Difference between semaphore and monitor?</div><div class="qa-a">Semaphore is a low-level primitive requiring manual placement of wait/signal. Monitor is high-level: mutual exclusion is AUTOMATICALLY enforced — programmer only handles condition synchronization (x.wait(), x.signal()).</div></div>
+    <div class="qa-card"><div class="qa-q">Q: What is busy waiting? When is it acceptable?</div><div class="qa-a">Busy waiting = process loops checking condition without sleeping, wasting CPU cycles. Acceptable ONLY when wait time is expected to be very short (e.g., spinlocks in OS kernel for multicore systems where context switch overhead > wait time).</div></div>
+    <div class="qa-card"><div class="qa-q">Q: What is the difference between deadlock and starvation?</div><div class="qa-a">Deadlock: processes permanently blocked — NONE can proceed (circular dependency). Starvation: process CAN proceed theoretically but NEVER gets the chance due to other processes always being preferred. A deadlocked process is also starved, but not vice versa.</div></div>
+    <div class="qa-card"><div class="qa-q">Q: What is the difference between deadlock and livelock?</div><div class="qa-a">Deadlock: processes are completely blocked, NO state change. Livelock: processes ARE changing state but make no progress — like two people in a hallway each stepping the same direction to avoid the other, forever.</div></div>
+  </div>
+
+  <div class="section-label">Trap Questions ⚠</div>
+  <div class="trap-card">
+    <div class="trap-q">Q: Does Peterson's solution work on modern hardware?</div>
+    <div class="trap-a">NOT without memory barriers! Modern CPUs reorder instructions for performance. The reads/writes to flag and turn may be reordered, violating the algorithm. Memory fence instructions are required. Peterson's is educational only.</div>
+  </div>
+  <div class="trap-card">
+    <div class="trap-q">Q: Can semaphores solve deadlock?</div>
+    <div class="trap-a">No — incorrect use of semaphores can actually CREATE deadlock (two processes each waiting for the other's semaphore). Deadlock prevention/avoidance requires separate strategies entirely.</div>
+  </div>
+  <div class="trap-card">
+    <div class="trap-q">Q: In Producer-Consumer, what happens if you acquire mutex BEFORE empty/full?</div>
+    <div class="trap-a">DEADLOCK. If producer holds mutex and then waits on empty (which is 0), and consumer needs mutex to signal empty — both are blocked permanently. Always acquire resource semaphores FIRST, then mutex.</div>
+  </div>
+
+  <div class="section-label">Common Mistakes</div>
+  <div class="mistake"><div class="wrong">Acquiring mutex BEFORE empty/full in Producer-Consumer</div><div class="right">Always: wait(empty/full) first, THEN wait(mutex)</div></div>
+  <div class="mistake"><div class="wrong">"Monitor = Semaphore"</div><div class="right">Monitor provides AUTOMATIC mutual exclusion; semaphore is manual</div></div>
+  <div class="mistake"><div class="wrong">Forgetting signal() after CS</div><div class="right">Causes PERMANENT blocking of all waiting processes</div></div>
+  <div class="mistake"><div class="wrong">"Peterson's is used in real OS"</div><div class="right">Real OS uses hardware-atomic Compare-And-Swap (CAS) operations</div></div>
+
+  <div class="section-label">1-Minute Revision</div>
+  <div class="revision-box"><ul>
+    <li>Race Condition: shared data + concurrent access = unpredictable result</li>
+    <li>3 CS Requirements: Mutual Exclusion + Progress + Bounded Waiting</li>
+    <li>Peterson's: educational, busy wait, not safe on modern CPUs</li>
+    <li>Semaphore: integer + wait(P) + signal(V); binary or counting</li>
+    <li>Mutex vs Semaphore: mutex has OWNERSHIP; binary semaphore doesn't</li>
+    <li>Monitor: high-level, auto mutual exclusion, condition variables (x.wait/x.signal)</li>
+    <li>Producer-Consumer: wait(empty/full) BEFORE wait(mutex) — critical order</li>
+    <li>Classic problems: Producer-Consumer, Readers-Writers, Dining Philosophers</li>
+  </ul></div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- TOPIC 4: DEADLOCKS                             -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="topic" id="t4">
+  <div class="topic-header">
+    <span class="topic-num t4">TOPIC 04</span>
+    <h2>Deadlocks</h2>
+  </div>
+
+  <div class="section-label">Core Concept</div>
+  <div class="concept-box">
+    A <strong>deadlock</strong> is a situation where a set of processes are all blocked, each waiting for a resource held by another process in the set — resulting in a <mark>circular wait with no process able to proceed</mark>. ALL four Coffman conditions must hold simultaneously for deadlock to occur. The OS must either prevent, avoid, detect, or recover from deadlocks.
+  </div>
+
+  <div class="section-label">Key Terms</div>
+  <div class="tbl-wrap"><table>
+    <tr><th>Term</th><th>Definition</th></tr>
+    <tr><td>Deadlock</td><td>Set of processes permanently blocked in circular resource dependency</td></tr>
+    <tr><td>Preemptable resource</td><td>Can be taken from process without failure (e.g., CPU, memory)</td></tr>
+    <tr><td>Non-preemptable resource</td><td>Cannot be taken without causing failure (e.g., printer, mutex)</td></tr>
+    <tr><td>RAG</td><td>Resource Allocation Graph — directed graph showing assignments and requests</td></tr>
+    <tr><td>Safe State</td><td>There exists at least one safe sequence of process execution</td></tr>
+    <tr><td>Safe Sequence</td><td>Order where each process can complete using available + held resources</td></tr>
+    <tr><td>Banker's Algorithm</td><td>Deadlock avoidance: checks safe state before each resource grant</td></tr>
+    <tr><td>Wait-For Graph</td><td>RAG simplified to show only process→process dependencies</td></tr>
+  </table></div>
+
+  <div class="section-label">Four Coffman Conditions</div>
+  <pre class="t4">
+ALL FOUR must hold simultaneously for deadlock:
+
+┌─────────────────────────────────────────────────────────┐
+│  1. MUTUAL EXCLUSION                                    │
+│     At least one resource is non-shareable              │
+│                                                         │
+│  2. HOLD AND WAIT                                       │
+│     Process holds ≥1 resource while waiting for more    │
+│                                                         │
+│  3. NO PREEMPTION                                       │
+│     Resources cannot be forcibly taken from a process   │
+│                                                         │
+│  4. CIRCULAR WAIT                                       │
+│     P1 waits for R held by P2,                          │
+│     P2 waits for R held by P3,                          │
+│     P3 waits for R held by P1  → circular chain         │
+└─────────────────────────────────────────────────────────┘</pre>
+
+  <div class="section-label">Diagrams</div>
+  <pre class="t4">
+RESOURCE ALLOCATION GRAPH (RAG)
+────────────────────────────────────────────────
+Request edge:    Pi ──────────► Rj  (process wants resource)
+Assignment edge: Rj ──────────► Pi  (resource given to process)
+
+DEADLOCK EXAMPLE:
+    (P1) ──requests──► [R1] ◄──holds── (P2)
+      │                                   │
+   holds                               requests
+      │                                   │
+    [R2] ──────────────────────────────► (P1)
+
+  P1 holds R2, wants R1
+  P2 holds R1, wants R2
+  → CIRCULAR WAIT → DEADLOCK!
+
+Wait-for graph: P1 → P2 → P1  (cycle = deadlock for single-instance)
+
+⚠ IMPORTANT:
+  Single instance resources: CYCLE = DEADLOCK (necessary & sufficient)
+  Multiple instances:        CYCLE ≠ necessarily deadlock (need detection algo)</pre>
+
+  <pre class="t4">
+DEADLOCK PREVENTION — Break one condition:
+────────────────────────────────────────────────────────
+Condition        Method                    Drawback
+──────────────   ────────────────────────  ─────────────────────────
+Mutual Exclusion Make resources shareable  Only for read-only resources
+Hold & Wait      Request ALL at once, OR   Low utilization, starvation
+                 release all before asking
+No Preemption    OS forcibly takes resource Only for preemptable resources
+Circular Wait    Total ordering on types   Restricts programming freedom
+                 (must request in order)</pre>
+
+  <div class="section-label">Banker's Algorithm — Numerical</div>
+  <pre class="t4">
+System: 3 resource types (A,B,C) | 5 processes
+Available: [3,3,2]
+
+Process | Allocation(A,B,C) | Max(A,B,C) | Need = Max−Alloc
+────────┼───────────────────┼────────────┼─────────────────
+P0      |     0,1,0         |   7,5,3    |    7,4,3
+P1      |     2,0,0         |   3,2,2    |    1,2,2
+P2      |     3,0,2         |   9,0,2    |    6,0,0
+P3      |     2,1,1         |   2,2,2    |    0,1,1
+P4      |     0,0,2         |   4,3,3    |    4,3,1
+
+SAFETY CHECK:
+Work = [3,3,2], all Finish[i] = false
+
+Step 1: P1: Need=[1,2,2] ≤ [3,3,2] ✓
+        Work = [3,3,2]+[2,0,0] = [5,3,2]  Finish[P1]=true
+
+Step 2: P3: Need=[0,1,1] ≤ [5,3,2] ✓
+        Work = [5,3,2]+[2,1,1] = [7,4,3]  Finish[P3]=true
+
+Step 3: P0: Need=[7,4,3] ≤ [7,4,3] ✓
+        Work = [7,4,3]+[0,1,0] = [7,5,3]  Finish[P0]=true
+
+Step 4: P2: Need=[6,0,0] ≤ [7,5,3] ✓
+        Work = [7,5,3]+[3,0,2] = [10,5,5] Finish[P2]=true
+
+Step 5: P4: Need=[4,3,1] ≤ [10,5,5] ✓
+        Work = [14,5,7]                   Finish[P4]=true
+
+All Finish = true → SAFE STATE ✅
+Safe Sequence: P1 → P3 → P0 → P2 → P4</pre>
+
+  <div class="section-label">Handling Strategies</div>
+  <div class="tbl-wrap"><table>
+    <tr><th>Strategy</th><th>Approach</th><th>Overhead</th><th>Resource Utilization</th></tr>
+    <tr><td>Prevention</td><td>Break one Coffman condition statically</td><td>Low</td><td>Low (conservative)</td></tr>
+    <tr><td>Avoidance</td><td>Check safe state before each allocation (Banker's)</td><td>Medium</td><td>Medium</td></tr>
+    <tr><td>Detection + Recovery</td><td>Let deadlock occur, detect cycle, recover</td><td>High</td><td>High</td></tr>
+    <tr><td>Ignore (Ostrich)</td><td>Pretend deadlock won't happen; just reboot</td><td>Zero</td><td>Highest</td></tr>
+  </table></div>
+
+  <div class="section-label">Real-World Analogy</div>
+  <div class="analogy-box">
+    <strong>Deadlock = Two-lane bridge blockage</strong><br>
+    Two cars meet head-on. Car A won't reverse until Car B does (hold & wait + circular wait). Bridge fits one car (mutual exclusion). Neither can be moved (no preemption). Result: neither moves — forever.<br><br>
+    <strong>Banker's Algorithm = A careful banker</strong><br>
+    Has limited cash. Before lending, checks: "If I lend this, can I still guarantee everyone gets repaid?" Only lends when safe — refuses even if funds are available.
+  </div>
+
+  <div class="section-label">Viva Q&amp;A</div>
+  <div class="qa-list">
+    <div class="qa-card"><div class="qa-q">Q: What are the four conditions for deadlock?</div><div class="qa-a">Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait — ALL FOUR must hold simultaneously. Eliminating even one prevents deadlock.</div></div>
+    <div class="qa-card"><div class="qa-q">Q: Is an unsafe state always a deadlock state?</div><div class="qa-a">NO! An unsafe state means deadlock MAY occur depending on future requests. A safe state guarantees deadlock WILL NOT occur. Deadlock is a subset of unsafe states — not all unsafe states lead to deadlock.</div></div>
+    <div class="qa-card"><div class="qa-q">Q: What does a cycle in the RAG mean?</div><div class="qa-a">Single-instance resources: cycle = deadlock (necessary AND sufficient). Multiple-instance resources: cycle is NECESSARY but NOT sufficient — there may or may not be a deadlock. Need the detection algorithm to confirm.</div></div>
+    <div class="qa-card"><div class="qa-q">Q: Difference between deadlock prevention and avoidance?</div><div class="qa-a">Prevention: eliminates one of the 4 conditions STATICALLY (restricts how resources are requested — before any execution). Avoidance: DYNAMICALLY examines each request and only grants if safe state is maintained (Banker's Algorithm).</div></div>
+    <div class="qa-card"><div class="qa-q">Q: Why is the Ostrich Algorithm used in practice?</div><div class="qa-a">Deadlocks are rare, and prevention/avoidance mechanisms are expensive (both in performance and programming complexity). For general-purpose OS like UNIX/Linux, it's more practical to just reboot when a rare deadlock occurs than to pay constant overhead for every resource request.</div></div>
+    <div class="qa-card"><div class="qa-q">Q: Can a single process deadlock with itself?</div><div class="qa-a">Normally no. But a process CAN deadlock by trying to acquire the same non-reentrant mutex twice (self-deadlock). The thread blocks waiting for a lock it already holds — permanent block.</div></div>
+  </div>
+
+  <div class="section-label">Trap Questions ⚠</div>
+  <div class="trap-card">
+    <div class="trap-q">Q: If we break Mutual Exclusion, can we prevent all deadlocks?</div>
+    <div class="trap-a">No — you can't break mutual exclusion for non-shareable resources (like a printer). It only works for truly shareable resources (read-only files). This approach is very limited and cannot prevent all deadlocks.</div>
+  </div>
+  <div class="trap-card">
+    <div class="trap-q">Q: Banker's guarantees deadlock won't occur — true or false?</div>
+    <div class="trap-a">Partially true. Banker's guarantees the system won't enter an UNSAFE STATE based on declared maximum demands. If a process's actual behavior deviates from its declared maximum, the guarantee breaks. It also requires processes to declare max resources upfront, which isn't always practical.</div>
+  </div>
+  <div class="trap-card">
+    <div class="trap-q">Q: Can deadlock occur with preemptable resources?</div>
+    <div class="trap-a">No — if resources can be preempted, the OS can always break a circular wait by forcibly taking a resource. Deadlock only occurs with NON-PREEMPTABLE resources.</div>
+  </div>
+
+  <div class="section-label">Common Mistakes</div>
+  <div class="mistake"><div class="wrong">"Cycle in RAG always means deadlock"</div><div class="right">Cycle = deadlock ONLY for single-instance resources</div></div>
+  <div class="mistake"><div class="wrong">"Unsafe state = deadlock"</div><div class="right">Unsafe = deadlock MAY happen; safe = deadlock WON'T happen</div></div>
+  <div class="mistake"><div class="wrong">"Prevention and avoidance are the same"</div><div class="right">Prevention = static (breaks conditions); Avoidance = dynamic (per-request check)</div></div>
+  <div class="mistake"><div class="wrong">Forgetting Need = Max − Allocation</div><div class="right">Need must be calculated first; it's the key input to Banker's</div></div>
+  <div class="mistake"><div class="wrong">"All 4 conditions independently cause deadlock"</div><div class="right">ALL FOUR must hold SIMULTANEOUSLY</div></div>
+
+  <div class="section-label">1-Minute Revision</div>
+  <div class="revision-box"><ul>
+    <li>Deadlock: circular wait, all processes blocked permanently</li>
+    <li>4 Conditions (ALL must hold): Mutual Exclusion + Hold & Wait + No Preemption + Circular Wait</li>
+    <li>RAG: request edge (P→R), assignment edge (R→P)</li>
+    <li>Cycle + single instance → deadlock; multi-instance → run detection algo</li>
+    <li>Prevention: break one condition (static) | Avoidance: Banker's per request (dynamic)</li>
+    <li>Safe state ≠ deadlock; Unsafe state ≠ guaranteed deadlock</li>
+    <li>Banker's: Need[i] = Max[i] − Allocation[i]; find safe sequence</li>
+    <li>Recovery: abort processes OR preempt resources (risk: starvation of victim)</li>
+  </ul></div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- TOPIC 5: MEMORY MANAGEMENT                     -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="topic" id="t5">
+  <div class="topic-header">
+    <span class="topic-num t5">TOPIC 05</span>
+    <h2>Memory Management (Paging + Virtual Memory)</h2>
+  </div>
+
+  <div class="section-label">Core Concept</div>
+  <div class="concept-box">
+    Memory management allows multiple processes to share physical memory safely. <strong>Paging</strong> divides memory into fixed-size blocks, <mark>eliminating external fragmentation</mark>. <strong>Virtual memory</strong> extends apparent memory beyond physical RAM using disk — allowing programs larger than RAM to execute via <strong>demand paging</strong>. The <strong>MMU</strong> translates logical addresses to physical addresses using the page table.
+  </div>
+
+  <div class="section-label">Key Terms</div>
+  <div class="tbl-wrap"><table>
+    <tr><th>Term</th><th>Definition</th></tr>
+    <tr><td>Physical Address</td><td>Actual address in RAM hardware</td></tr>
+    <tr><td>Logical/Virtual Address</td><td>Address generated by CPU (process's perspective)</td></tr>
+    <tr><td>MMU</td><td>Memory Management Unit — hardware translating virtual → physical</td></tr>
+    <tr><td>Page</td><td>Fixed-size block of logical memory (typical: 4KB)</td></tr>
+    <tr><td>Frame</td><td>Fixed-size block of physical memory (same size as page)</td></tr>
+    <tr><td>Page Table</td><td>Per-process table mapping page numbers → frame numbers</td></tr>
+    <tr><td>Page Fault</td><td>Process accesses a page not in physical memory → trap to OS</td></tr>
+    <tr><td>TLB</td><td>Translation Lookaside Buffer — CPU cache for page table entries</td></tr>
+    <tr><td>Thrashing</td><td>Processes spend more time swapping pages than executing</td></tr>
+    <tr><td>Working Set</td><td>Set of pages a process actively uses at a given time</td></tr>
+    <tr><td>Demand Paging</td><td>Load pages into RAM only when accessed (lazy loading)</td></tr>
+    <tr><td>Swap Space</td><td>Disk area used to store pages evicted from RAM</td></tr>
+    <tr><td>Belady's Anomaly</td><td>FIFO: adding more frames can INCREASE page faults</td></tr>
+  </table></div>
+
+  <div class="section-label">Diagrams</div>
+  <pre class="t5">
+PAGING — ADDRESS TRANSLATION
+────────────────────────────────────────────────────────
+Logical Address from CPU:
+┌──────────────────┬───────────────┐
+│  Page Number (p) │  Offset (d)   │
+│  (top n bits)    │ (bottom m bits│
+└──────────────────┴───────────────┘
+              │
+              ▼
+       Page Table lookup
+       (p → frame f)
+              │
+              ▼
+Physical Address:
+┌───────────────────┬───────────────┐
+│  Frame Number (f) │   Offset (d)  │
+└───────────────────┴───────────────┘
+
+Physical Address = Frame# × Page_Size + Offset
+
+PAGE TABLE STRUCTURE:
+┌─────┬───────┬───────┬───────┬──────────┬───────┐
+│ Page│ Frame │ Valid │ Dirty │ Reference│ Prot  │
+├─────┼───────┼───────┼───────┼──────────┼───────┤
+│  0  │   3   │   1   │   0   │    1     │  RW   │
+│  1  │   7   │   1   │   1   │    1     │  RW   │
+│  2  │   -   │   0   │   -   │    -     │   -   │ ← PAGE FAULT if accessed!
+│  3  │   2   │   1   │   0   │    0     │  R    │
+└─────┴───────┴───────┴───────┴──────────┴───────┘
+Valid=0: page on disk → PAGE FAULT on access
+Dirty=1: page modified → must write back to disk on eviction</pre>
+
+  <pre class="t5">
+TLB — TRANSLATION LOOKASIDE BUFFER
+────────────────────────────────────────────────────────
+CPU generates logical address
+          │
+          ▼
+    ┌─────────┐    HIT (~95-99% of time)
+    │   TLB   │──────────────────────────► Physical Address
+    │ (in CPU)│                             (1-2 cycles)
+    └─────────┘
+          │ MISS
+          ▼
+    ┌─────────────┐
+    │  Page Table │──────────────────────► Physical Address
+    │  (in RAM)   │                         (100s of cycles)
+    └─────────────┘
+    + Update TLB with new entry (evict old if full)
+
+EAT = h × (t_TLB + t_mem) + (1−h) × (t_TLB + 2×t_mem)
+
+Example: TLB=20ns, Memory=100ns, Hit ratio=80%:
+EAT = 0.8×(20+100) + 0.2×(20+100+100)
+    = 0.8×120 + 0.2×220
+    = 96 + 44 = 140ns  (vs 200ns without TLB)</pre>
+
+  <pre class="t5">
+PAGE FAULT HANDLING — Step by Step
+────────────────────────────────────────────────────────
+CPU accesses page P
+        │
+  Valid bit = 1? ──YES──► Use frame directly (no fault)
+        │ NO
+        ▼
+  PAGE FAULT TRAP (hardware exception)
+        │
+  1. Save CPU state (trap to kernel)
+  2. Check: is this a valid memory reference?
+     If NO → SIGSEGV → terminate process (segfault)
+  3. Find a free frame in RAM
+     If NO free frame → run page replacement algorithm
+  4. Load page from disk (swap space) into frame
+  5. Update page table: valid=1, frame=f
+  6. Restart the faulting instruction
+        │
+        ▼
+  Process resumes transparently</pre>
+
+  <div class="section-label">Page Replacement Algorithms</div>
+  <pre class="t5">
+ALGORITHMS SUMMARY:
+
+FIFO: Replace page in memory the LONGEST
+  + Simple | - Belady's Anomaly | - Poor performance
+
+OPT: Replace page not used for LONGEST TIME IN FUTURE
+  + Minimum faults (benchmark) | - Requires future knowledge (impractical)
+
+LRU: Replace page not used for LONGEST TIME IN PAST
+  + Near-optimal | - Expensive to implement exactly | - No Belady's anomaly
+
+CLOCK (2nd Chance): Approximation of LRU
+  + O(1) | + Used in real OS | - Approximation only
+  Each page has reference bit R.
+  On access: R=1. On replacement: if R=1 → clear to 0 (second chance);
+  if R=0 → replace. Clock hand sweeps pages in order.
+
+Belady's Anomaly: ONLY affects FIFO, NOT LRU or OPT (stack algorithms)</pre>
+
+  <div class="section-label">Numerical — Page Replacement</div>
+  <pre class="t5">
+Reference String: 7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2
+Frames = 3
+
+FIFO:
+Ref: 7   0   1   2   0   3   0   4   2   3   0   3   2
+F1:  7   7   7   2   2   2   2   4   4   4   0   0   0
+F2:  -   0   0   0   0   0   0   0   2   2   2   2   2
+F3:  -   -   1   1   1   3   3   3   3   3   3   3   3
+     F   F   F   F   -   F   -   F   F   F   F   -   -
+Page Faults: 9
+
+LRU:
+Ref: 7   0   1   2   0   3   0   4   2   3   0   3   2
+F1:  7   7   7   2   2   2   0   0   0   3   3   3   2
+F2:  -   0   0   0   0   3   3   4   4   4   0   0   0
+F3:  -   -   1   1   1   1   1   1   2   2   2   2   2  ← approx
+     F   F   F   F   -   F   F   F   F   F   F   -   F
+Page Faults: 8  (LRU typically ≤ FIFO)</pre>
+
+  <div class="section-label">Numerical — Address Translation</div>
+  <pre class="t5">
+Page size = 4KB = 4096 bytes
+Logical address = 12345
+
+Step 1: Page number p = floor(12345 / 4096) = floor(3.012) = 3
+Step 2: Offset d      = 12345 mod 4096 = 12345 − 12288 = 57
+
+Page table: page 3 → frame 6
+
+Step 3: Physical address = 6 × 4096 + 57 = 24576 + 57 = 24633
+
+Verify: frame 6 starts at byte 24576; data is 57 bytes into frame 6.</pre>
+
+  <div class="section-label">Real-World Analogy</div>
+  <div class="analogy-box">
+    <strong>Paging = Library book management</strong><br>
+    Books (pages) fit fixed-size shelves (frames). Your catalog (page table) says where each book is. The librarian (MMU) translates "I want book 3" → "it's on shelf 7, slot 4".<br><br>
+    <strong>Virtual Memory = Desk + Filing cabinet</strong><br>
+    Your desk (RAM) is small. Filing cabinet (swap/disk) stores other documents. When you need a document not on your desk (page fault), you fetch it. If desk is full, file away the least-recently-used document (page replacement).<br><br>
+    <strong>TLB = Sticky notes on your monitor</strong><br>
+    Instead of checking the full catalog every time, frequently-used book locations are on sticky notes (TLB). Cache miss = note not there, must check full catalog.
+  </div>
+
+  <div class="section-label">Comparison Tables</div>
+  <div class="tbl-wrap"><table>
+    <tr><th>Algorithm</th><th>Belady's Anomaly</th><th>Complexity</th><th>Performance</th><th>Used in Practice?</th></tr>
+    <tr><td>FIFO</td><td>Yes ⚠</td><td>O(1)</td><td>Poor</td><td>Rarely</td></tr>
+    <tr><td>OPT</td><td>No</td><td>O(n)</td><td>Best possible</td><td>No (needs future)</td></tr>
+    <tr><td>LRU</td><td>No</td><td>O(n)</td><td>Near-optimal</td><td>Approximated</td></tr>
+    <tr><td>Clock</td><td>No</td><td>O(1)</td><td>Good</td><td>Yes (real OS)</td></tr>
+  </table></div>
+  <div class="tbl-wrap" style="margin-top:12px"><table>
+    <tr><th>Feature</th><th>Paging</th><th>Segmentation</th></tr>
+    <tr><td>Block size</td><td>Fixed (page)</td><td>Variable (segment)</td></tr>
+    <tr><td>External fragmentation</td><td>None ✓</td><td>Yes ✗</td></tr>
+    <tr><td>Internal fragmentation</td><td>Yes (last page) ✗</td><td>None ✓</td></tr>
+    <tr><td>Programmer visibility</td><td>No (transparent)</td><td>Yes (code/data/stack)</td></tr>
+    <tr><td>OS support</td><td>All modern OS</td><td>x86 legacy (limited)</td></tr>
+  </table></div>
+
+  <div class="section-label">Viva Q&amp;A</div>
+  <div class="qa-list">
+    <div class="qa-card"><div class="qa-q">Q: What is the difference between logical and physical address?</div><div class="qa-a">Logical (virtual) address is generated by the CPU — what the process sees. Physical address is the actual RAM location. The MMU hardware translates logical → physical at runtime using the page table.</div></div>
+    <div class="qa-card"><div class="qa-q">Q: What happens during a page fault?</div><div class="qa-a">CPU generates a trap → OS takes control → validates the reference (invalid = SIGSEGV, terminate) → finds free frame (evicts a page if none free, using replacement algorithm) → loads page from disk → updates page table (valid=1) → restarts the faulting instruction. Transparent to the process.</div></div>
+    <div class="qa-card"><div class="qa-q">Q: Why does TLB improve performance so significantly?</div><div class="qa-a">Without TLB, every memory access requires 2 RAM accesses: one to the page table, one for the actual data. TLB caches recent page-to-frame mappings in the CPU. With 95-99% hit rate, effective access time approaches single-access time, nearly doubling memory throughput.</div></div>
+    <div class="qa-card"><div class="qa-q">Q: What is Belady's Anomaly?</div><div class="qa-a">In FIFO page replacement, increasing the number of frames can INCREASE page faults — counterintuitive! This paradox doesn't affect LRU or OPT because they have the stack property (a set with n frames is a subset of the set with n+1 frames).</div></div>
+    <div class="qa-card"><div class="qa-q">Q: What is thrashing and how is it prevented?</div><div class="qa-a">Thrashing occurs when a process has fewer frames than its working set — it generates page faults continuously and spends more time swapping than executing. Prevention: Working Set Model (ensure each process has enough frames for its working set), or Page Fault Frequency control (adjust frames based on fault rate).</div></div>
+    <div class="qa-card"><div class="qa-q">Q: What is Copy-on-Write (COW)?</div><div class="qa-a">After fork(), parent and child share the same physical pages (mapped read-only). When EITHER writes to a page, the OS creates a private copy of just that page for the writing process. Avoids unnecessary copying of all pages — critical optimization for fork() performance.</div></div>
+    <div class="qa-card"><div class="qa-q">Q: Difference between page fault and segmentation fault?</div><div class="qa-a">Page fault: page is valid but NOT in RAM — OS handles transparently by loading from disk, then restarts the instruction. Segmentation fault: process accessed an INVALID or unauthorized address — OS terminates the process with SIGSEGV. Page fault is normal; segfault is an error.</div></div>
+  </div>
+
+  <div class="section-label">Trap Questions ⚠</div>
+  <div class="trap-card">
+    <div class="trap-q">Q: Why can't we implement true LRU in hardware?</div>
+    <div class="trap-a">True LRU needs either: a hardware counter updated on EVERY memory access (time-stamps every access — too expensive), or a stack of pages reordered on every access (too slow). Hardware only provides a single reference bit, which the OS uses to approximate LRU via the Clock algorithm.</div>
+  </div>
+  <div class="trap-card">
+    <div class="trap-q">Q: Can page size affect performance?</div>
+    <div class="trap-a">Yes. Large pages: fewer page table entries, fewer TLB entries needed → better TLB hit rate, but more internal fragmentation and larger page fault penalty (more data to load). Small pages: less fragmentation, more TLB pressure. Most OS use 4KB; some use huge pages (2MB/1GB) for specific workloads like databases.</div>
+  </div>
+  <div class="trap-card">
+    <div class="trap-q">Q: Is TLB in RAM?</div>
+    <div class="trap-a">No! TLB is in CPU HARDWARE (on-chip associative cache), not RAM. That's why TLB hits are so fast (1-2 cycles). Page tables are in RAM — that's why TLB misses require additional memory accesses.</div>
+  </div>
+
+  <div class="section-label">Common Mistakes</div>
+  <div class="mistake"><div class="wrong">"Page fault = error"</div><div class="right">Page fault is a NORMAL OS event handled transparently; only a problem if excessive (thrashing)</div></div>
+  <div class="mistake"><div class="wrong">"Virtual memory = RAM"</div><div class="right">Virtual memory uses BOTH RAM and disk swap space</div></div>
+  <div class="mistake"><div class="wrong">"TLB is in RAM"</div><div class="right">TLB is in CPU HARDWARE (on-chip cache), not RAM</div></div>
+  <div class="mistake"><div class="wrong">"Belady's applies to all algorithms"</div><div class="right">Belady's anomaly ONLY affects FIFO, NOT LRU/OPT (stack algorithms)</div></div>
+  <div class="mistake"><div class="wrong">Physical address = page_num × page_size</div><div class="right">Physical address = FRAME_num × page_size + OFFSET</div></div>
+
+  <div class="section-label">1-Minute Revision</div>
+  <div class="revision-box"><ul>
+    <li>Paging: fixed-size pages (logical) ↔ frames (physical); eliminates external fragmentation</li>
+    <li>Page table: per-process; valid bit, dirty bit, reference bit</li>
+    <li>MMU: hardware, translates logical → physical | TLB: CPU cache, ~95-99% hit rate</li>
+    <li>EAT = h×(t_TLB + t_mem) + (1−h)×(t_TLB + 2×t_mem)</li>
+    <li>Physical addr = Frame# × Page_Size + Offset</li>
+    <li>Page fault: valid page not in RAM → load from disk → restart instruction</li>
+    <li>Replacement: FIFO (simple, Belady's), OPT (optimal, impractical), LRU (near-optimal), Clock (real OS)</li>
+    <li>Thrashing: too many faults → fix with Working Set Model</li>
+    <li>COW: fork() shares pages; copy only on write → performance optimization</li>
+  </ul></div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- QUICK REFERENCE                                -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="topic" id="ref" style="border-bottom:none">
+  <div class="topic-header">
+    <span class="topic-num" style="background:#f59e0b;color:#000">MASTER REF</span>
+    <h2>Quick Reference Cheat Sheet</h2>
+  </div>
+
+  <div class="formula-strip">
+    TAT = CT − AT &nbsp;|&nbsp; WT = TAT − BT &nbsp;|&nbsp; Response = First_CPU − AT<br>
+    Physical Addr = Frame# × Page_Size + Offset &nbsp;|&nbsp; Need[i] = Max[i] − Alloc[i]<br>
+    EAT = h×(t_TLB+t_mem) + (1−h)×(t_TLB+2×t_mem)
+  </div>
+
+  <div class="section-label">Algorithm Decision Guide</div>
+  <div class="tbl-wrap"><table>
+    <tr><th>Question</th><th>Answer</th></tr>
+    <tr><td>Minimizes average waiting time?</td><td>SJF (non-preemptive) / SRTF (preemptive)</td></tr>
+    <tr><td>Most fair scheduling?</td><td>Round Robin</td></tr>
+    <tr><td>Causes Convoy Effect?</td><td>FCFS</td></tr>
+    <tr><td>Causes starvation?</td><td>Priority / SJF (not FCFS, not RR)</td></tr>
+    <tr><td>Optimal page replacement (theoretical)?</td><td>OPT</td></tr>
+    <tr><td>Has Belady's Anomaly?</td><td>FIFO only</td></tr>
+    <tr><td>Page replacement used in real OS?</td><td>Clock (approximation of LRU)</td></tr>
+    <tr><td>Scheduling used in real OS?</td><td>MLFQ (Multilevel Feedback Queue)</td></tr>
+    <tr><td>Cycle in RAG always means deadlock?</td><td>Only if single-instance resources</td></tr>
+    <tr><td>TLB is located where?</td><td>In CPU hardware (on-chip), NOT RAM</td></tr>
+  </table></div>
+
+  <div class="section-label">Acronym Reference</div>
+  <div class="tbl-wrap"><table>
+    <tr><th>Acronym</th><th>Full Form</th><th>Topic</th></tr>
+    <tr><td>PCB</td><td>Process Control Block</td><td>Process</td></tr>
+    <tr><td>MMU</td><td>Memory Management Unit</td><td>Memory</td></tr>
+    <tr><td>TLB</td><td>Translation Lookaside Buffer</td><td>Memory</td></tr>
+    <tr><td>RAG</td><td>Resource Allocation Graph</td><td>Deadlock</td></tr>
+    <tr><td>MLFQ</td><td>Multilevel Feedback Queue</td><td>Scheduling</td></tr>
+    <tr><td>SRTF</td><td>Shortest Remaining Time First</td><td>Scheduling</td></tr>
+    <tr><td>COW</td><td>Copy-on-Write</td><td>Memory</td></tr>
+    <tr><td>EAT</td><td>Effective Access Time</td><td>Memory</td></tr>
+    <tr><td>TAT</td><td>Turnaround Time</td><td>Scheduling</td></tr>
+    <tr><td>WT</td><td>Waiting Time</td><td>Scheduling</td></tr>
+    <tr><td>CS</td><td>Critical Section</td><td>Synchronization</td></tr>
+    <tr><td>FCFS</td><td>First Come First Served</td><td>Scheduling</td></tr>
+  </table></div>
+</section>
+
+</main>
+
+<script>
+// Smooth scroll to section
+function scrollTo(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.querySelectorAll('.nav-topic').forEach(n => n.classList.remove('active'));
+  event.target.closest('.nav-topic').classList.add('active');
+}
+
+// Q&A toggle
+document.querySelectorAll('.qa-q').forEach(q => {
+  q.addEventListener('click', () => {
+    q.parentElement.classList.toggle('open');
+  });
+});
+
+// Highlight active section on scroll
+const sections = ['t1','t2','t3','t4','t5','ref'];
+const navItems = document.querySelectorAll('.nav-topic');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 100) current = id;
+  });
+  navItems.forEach((n,i) => {
+    n.classList.toggle('active', sections[i] === current);
+  });
+}, { passive: true });
+</script>
+</body>
+</html>
